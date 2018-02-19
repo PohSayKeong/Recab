@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Home</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="home_style.css" type="text/css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<!-- ignore this
+		<script>
+			function cabinet(n) {
+				if (n == 1) {
+					window.location.href = "file:///C:/Users/cheeh/Desktop/Webapp/Cabinet1.html";
+				} else if (n == 2) {
+					window.location.href = "file:///C:/Users/cheeh/Desktop/Webapp/Cabinet2.html";
+				} else if (n == 3) {
+					window.location.href = "file:///C:/Users/cheeh/Desktop/Webapp/Cabinet3.html";
+				}
+		</script>
+-->
+	</head>
+
+	<body>
+
+		<button type = "button" onclick = "cabinet(1)" class = "card">
+			<p class = "card-text">Cabinet 1</p>
+		</button>
+
+		<button type = "button" onclick = "cabinet(2)" class = "card">
+			<p class = "card-text">Cabinet 2</p>
+		</button>
+
+		<button type = "button" onclick = "cabinet(3)" class = "card">
+			<p class = "card-text">Cabinet 3</p>
+		</button>
+
+		<button type = "button" class = "plus">
+			<h1 class = "card-text">+</h1>
+		</button>
+
+	</body>
+
+</html>
