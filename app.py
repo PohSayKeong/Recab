@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 import sys
 import json
@@ -19,7 +19,7 @@ class Dataentry(db.Model):
 @app.route("/submit", methods=["POST"])
 def post_to_db():
     indata = Dataentry(request.form['mydata'])
-    data = copy(indata.__dict__)
+    data = indata.__dict__.copy()
     del data["_sa_instance_state"]
     try:
         db.session.add(indata)
@@ -28,7 +28,7 @@ def post_to_db():
         print("\n FAILED entry: {}\n".format(json.dumps(data)))
         print(e)
         sys.stdout.flush()
-    return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("enter_data"))
+    return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("homepage"))
 
 @app.route('/')
 def homepage():
