@@ -1,18 +1,17 @@
 from flask import Flask, render_template, url_for, request
-from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
 from flask_sqlalchemy import SQLAlchemy
 import sys
 import json
 from flask_heroku import Heroku
+from werkzeug.utils import secure_filename
+import os
+import config
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db = SQLAlchemy(app)
 
-photos = UploadSet('photos', IMAGES)
-
-app.config['UPLOADED_PHOTOS_DEST'] = 'static/images'
-configure_uploads(app, photos)
+from helpers import *
 
 class Dataentry(db.Model):
     __tablename__ = "dataentry"
@@ -39,8 +38,10 @@ def post_to_db():
 @app.route('/', methods=["GET","POST"])
 def homepage():
     if request.method == 'POST' and 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        return render_template("index.html")
+        photo = request.files['photo']
+        photo.filename = secure_filename(photo.filename)
+        output = upload_file_to_s3(photo, S3_BUCKET)
+        return str(output)
     return render_template("index.html")
 
 if __name__ == '__main__':
