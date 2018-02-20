@@ -17,10 +17,14 @@
 			<p class ="card-text">Cabinet 3</p>
 		</div>
 		<form method="POST" action="{{ url_for('post_to_db') }}">
-		<label for="mydata">Gimme your data, fool!</label>
-		<input type="text" id="mydata" name="mydata">
-		<button type="submit">IT FEEDS IT THE DATA</button>
+			<label for="mydata">Gimme your data, fool!</label>
+			<input type="text" id="mydata" name="mydata">
+			<button type="submit">IT FEEDS IT THE DATA</button>
 		</form>
-		<input type="file" accept="image/*;capture=camera">
+		<form method=POST enctype=multipart/form-data action="{{ url_for('homepage') }}">
+			<input type="button" id="loadFileXml" value="+" onclick="document.getElementById('photo').click();" />
+			<input type="file" accept="image/*;capture=camera" style="display:none;" id="photo" name="photo"/>
+			<input type="submit">
+		</form>
 	</body>
 </html>

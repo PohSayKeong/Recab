@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request
+from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
 from flask_sqlalchemy import SQLAlchemy
 import sys
 import json
@@ -7,6 +8,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db = SQLAlchemy(app)
+
+photos = UploadSet('photos', IMAGES)
+
+app.config['UPLOADED_PHOTOS_DEST'] = 'static/images'
+configure_uploads(app, photos)
 
 class Dataentry(db.Model):
     __tablename__ = "dataentry"
@@ -30,8 +36,11 @@ def post_to_db():
         sys.stdout.flush()
     return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("homepage"))
 
-@app.route('/')
+@app.route('/', methods=["GET","POST"])
 def homepage():
+    if request.method == 'POST' and 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        return render_template("index.html")
     return render_template("index.html")
 
 if __name__ == '__main__':
