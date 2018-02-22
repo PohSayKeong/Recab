@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>New Cabinet</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="../static/css/newcabinet.css?q=1280549780" type="text/css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+<!--HEADER-->
+		<div class = "header">
+			<button type = "button" class = "nav"  onclick="window.history.back()">
+				<h1>BACK</h1>
+			</button>
+			<h1>RECAB</h1>
+			<form action="{{ url_for('homepage') }}">
+				<button type = "submit" class = "nav">
+					<h1>HOME</h1>
+				</button>
+			</form>
+		</div>
+<!--HEADER-->
+
+<!--IMG-->
+		<div>
+			<img src = {{ image_link }}>
+		</div>
+<!--IMG-->
+
+<!--FORM-->
+		<div class = "card">
+			<form class = "form">
+				CABINET NAME:<br>
+				<input type="text" placeholder = "Enter Cabinet Name" class = "input"><br><br>
+				DESCRIPTION:<br>
+				<input type="text" placeholder = "Enter Description" class = "input" id = "description">
+			</form>
+<!--DONE-->
+			<button type = "button" class = "button" id = "done">
+				<h1>GET ORGANISED!</h1>
+			</button>
+<!--DONE-->
+		</div>
+<!--FORM-->
+
+<!--FOOTER-->
+		<div class = "footer">
+			<button type = "button" class = "button">
+				<h1>LOG OUT</h1>
+			</button>
+		</div>
+<!--FOOTER-->
+
+	</body>
+
+</html>

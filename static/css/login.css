@@ -1,0 +1,31 @@
+body {
+	background-image: url("../images/marble.jpg");
+}
+
+.login {
+	position:absolute;
+	top:25%;
+	bottom:15%;
+	right: 0;
+	left: 0;
+	border-radius: 50px;
+	background: linear-gradient(to bottom right, #94effa, #c294fa);
+	width: 25%;
+	margin: 10px auto;
+	padding: 10px;
+	text-align: center;
+	font-family: "Monoton";
+	border: 3px solid black;
+}
+
+.loginsubmit {
+	font-family: 'Francois One', sans-serif;
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+.gotosignup {
+	font-family: 'Francois One', sans-serif;
+	border-radius: 10px;
+	border: 1px solid black;
+}

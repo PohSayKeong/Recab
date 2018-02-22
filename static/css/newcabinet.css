@@ -1,0 +1,89 @@
+* {
+	text-align: center;
+	font-family: "Oswald";
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+	background: linear-gradient(to bottom right, #94effa, #c294fa);
+}
+
+.header {
+	background-image: url("../images/marble.jpg");
+	background-position: center top;
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	margin: 10px auto;
+	width: 90%;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#title {
+	font-family: "Permanent Marker";
+}
+
+.button {
+	background: black;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width : 80px;
+	height: 80px;
+	font-size: 50%;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card {
+	background: rgba(255,255,255,0.8);
+	border-radius: 50px;
+	margin: 10px auto;
+	padding: 10px;
+	width: 80%;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#form {
+	text-align: center;
+}
+
+.form {
+	position: relative;
+	left: 30px;
+	text-align: left;
+}
+
+#done {
+	margin: 10px auto;
+	border-radius: 50px;
+	width: 200px;
+}
+
+.input {
+	text-align: left;
+}
+
+#description {
+	width: 75vw;
+}
+
+.footer {
+	background-image: url("../images/marble.jpg");
+	background-position: center bottom;
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px auto;
+	width: 90%;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}

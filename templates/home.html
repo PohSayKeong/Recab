@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Home</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="../static/css/home.css?q=1280549780" type="text/css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+<!--HEADER-->
+		<div class = "header">
+			<button type = "button" class = "nav"  onclick="window.history.back()">
+				<h1>BACK</h1>
+			</button>
+			<h1>RECAB</h1>
+			<form action="{{ url_for('homepage') }}">
+				<button type = "submit" class = "nav">
+					<h1>HOME</h1>
+				</button>
+			</form>
+		</div>
+<!--HEADER-->
+
+<!--CABINETS-->
+		<form action="{{ url_for('cabinetpage') }}">
+			<button type = "submit" class = "card">
+				<p class = "card-text">Cabinet</p>
+			</button>
+		</form>
+<!--CABINETS-->
+
+<!--PLUS-->
+		<form method=POST enctype=multipart/form-data>
+			<button type = "button" class = "plus" id="loadFileXml" onclick="document.getElementById('photo').click();">
+				<h1 class = "card-text">+</h1>
+			</button>
+			<input type="file" accept="image/*;capture=camera" style="display:none;" id="photo" name="photo"/>
+			<input type="submit">
+		</form>
+<!--PLUS-->
+
+<!--FOOTER-->
+		<div class = "footer">
+			<button type = "button" class = "nav">
+				<h1>LOG OUT</h1>
+			</button>
+		</div>
+<!--FOOTER-->
+
+	</body>
+	<form method="POST" action="{{ url_for('post_to_db') }}">
+		<label for="mydata">Gimme your data, fool!</label>
+		<input type="text" id="mydata" name="mydata">
+		<button type="submit">IT FEEDS IT THE DATA</button>
+	</form>
+</html>

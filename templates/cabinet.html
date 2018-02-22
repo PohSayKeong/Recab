@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Cabinet</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <link href="../static/css/cabinet.css?q=1280549780" type="text/css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+<!--HEADER-->
+		<div class = "header">
+			<button type = "button" class = "nav" onclick="window.history.back()">
+				<h1>BACK</h1>
+			</button>
+			<h1>RECAB</h1>
+			<form action="{{ url_for('homepage') }}">
+				<button type = "submit" class = "nav">
+					<h1>HOME</h1>
+				</button>
+			</form>
+		</div>
+<!--HEADER-->
+
+<!--CABINET-->
+		<div class = "card">
+			<h1>~~~Cabinet~~~</h1>
+		</div>
+<!--CABINET-->
+
+<!--ITEMS-->
+		<div class = "card">
+			<p>Item 1</p>
+			<p>Item 2</p>
+			<p>Item 3</p>
+		</div>
+<!--ITEMS-->
+
+<!--PLUS-->
+		<div class = "plus">
+			<button type = "button" class = "plus">
+				<h1>+</h1>
+			</button>
+		</div>
+<!--PLUS-->
+
+<!--FOOTER-->
+		<div class = "footer">
+			<button type = "button" class = "nav">
+				<h1>LOG OUT</h1>
+			</button>
+		</div>
+<!--FOOTER-->
+
+	</body>
+
+</html>
