@@ -30,26 +30,43 @@ body {
 	font-family: "Permanent Marker";
 }
 
-.nav {
+.button {
 	background: black;
 	color: white;
+	border: none;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 5px;
 	width : 80px;
 	height: 80px;
 	font-size: 50%;
+	transition-duration: 0.2s;
+  cursor: pointer;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.button:hover {
+	background: white;
+	color: black;
+	border: 2px solid black;
+}
+
 .card {
-	background: rgba(255,255,255,0.8);
+	background: rgba(255,255,255,0.7);
 	border: none;
 	border-radius: 50px;
 	margin: 10px auto;
 	width: 80%;
+	transition-duration: 0.2s;
+  cursor: pointer;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card:hover {
+	background: white;
+	font-size: 110%;
 }
 
 .card-text {
@@ -59,6 +76,7 @@ body {
 .plus {
 	background: black;
 	color: white;
+	border: none;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
@@ -66,7 +84,15 @@ body {
 	margin: 10px auto;
 	width : 80px;
 	height: 80px;
+	transition-duration: 0.2s;
+  cursor: pointer;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.plus:hover {
+	background: white;
+	color: black;
+	border: 2px solid black;
 }
 
 .footer {

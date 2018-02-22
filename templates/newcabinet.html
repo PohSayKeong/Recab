@@ -9,7 +9,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link href="../static/css/newcabinet.css?q=1280549780" type="text/css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
 	</head>
 
@@ -17,12 +18,12 @@
 
 <!--HEADER-->
 		<div class = "header">
-			<button type = "button" class = "nav"  onclick="window.history.back()">
+			<button type = "button" class = "button"  onclick="window.history.back()">
 				<h1>BACK</h1>
 			</button>
-			<h1>RECAB</h1>
+			<h1 id = "title">RECAB</h1>
 			<form action="{{ url_for('homepage') }}">
-				<button type = "submit" class = "nav">
+				<button type = "submit" class = "button">
 					<h1>HOME</h1>
 				</button>
 			</form>
@@ -30,31 +31,38 @@
 <!--HEADER-->
 
 <!--IMG-->
-		<div>
-			<img src = {{ image_link }}>
-		</div>
+		<form method=POST enctype=multipart/form-data>
+			<button type = "button" class = "imgbutton" id = "loadFileXml" onclick = "document.getElementById('photo').click();">
+				<p>Click to add/edit image</p>
+			</button>
+			<input type = "file" accept = "image/*;capture=camera" style="display:none;" id = "photo" name = "photo"/>
+			<input type="submit">
+		</form>
+				<img src = {{ image_link }} class = "img" style= {{ display }}>
 <!--IMG-->
 
 <!--FORM-->
+		<form method=POST enctype=multipart/form-data>
 		<div class = "card">
 			<form class = "form">
 				CABINET NAME:<br>
 				<input type="text" placeholder = "Enter Cabinet Name" class = "input"><br><br>
 				DESCRIPTION:<br>
-				<input type="text" placeholder = "Enter Description" class = "input" id = "description">
+				<input type="text" placeholder = "Enter Description" class = "input" id = "description" name = "description">
 			</form>
 <!--DONE-->
-			<button type = "button" class = "button" id = "done">
+			<button type = "submit" class = "button" id = "done">
 				<h1>GET ORGANISED!</h1>
 			</button>
 <!--DONE-->
-		</div>
+			</div>
+		</form>
 <!--FORM-->
 
 <!--FOOTER-->
 		<div class = "footer">
 			<form action="{{ url_for('logout') }}">
-				<button type = "submit" class = "nav">
+				<button type = "submit" class = "button">
 					<h1>LOG OUT</h1>
 				</button>
 			</form>

@@ -99,12 +99,6 @@ def logout():
 @app.route('/', methods=["GET","POST"])
 @flask_login.login_required
 def homepage():
-    if request.method == 'POST' and 'photo' in request.files:
-        photo = request.files['photo']
-        photo.filename = secure_filename(photo.filename)
-        output = upload_file_to_s3(photo, S3_BUCKET)
-        session['image_link'] = str(output)
-        return redirect(url_for('newcabinetpage'))
     return render_template("home.html")
 
 @app.route('/cabinet', methods=["GET","POST"])
@@ -115,8 +109,15 @@ def cabinetpage():
 @app.route('/newcabinet', methods=["GET","POST"])
 @flask_login.login_required
 def newcabinetpage():
-    image_link = session.get('image_link', None)
-    return render_template("newcabinet.html", image_link=image_link)
+    if request.method == 'POST' and 'photo' in request.files:
+        photo = request.files['photo']
+        photo.filename = secure_filename(photo.filename)
+        output = upload_file_to_s3(photo, S3_BUCKET)
+        session['image_link'] = str(output)
+        return render_template("newcabinet.html", image_link=str(output), display="", method = 'GET')
+    if request.method == 'POST' and 'description' in request.files:
+        return flask.redirect(url_for('homepage'))
+    return render_template("newcabinet.html", display="display:none;")
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

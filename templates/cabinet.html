@@ -8,8 +8,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	    <link href="../static/css/cabinet.css?q=1280549780" type="text/css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	  <link href="../static/css/cabinet.css?q=1280549780" type="text/css" rel="stylesheet">
+		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
 	</head>
 
@@ -17,12 +18,12 @@
 
 <!--HEADER-->
 		<div class = "header">
-			<button type = "button" class = "nav" onclick="window.history.back()">
+			<button type = "button" class = "button" onclick = "window.history.back()">
 				<h1>BACK</h1>
 			</button>
-			<h1>RECAB</h1>
-			<form action="{{ url_for('homepage') }}">
-				<button type = "submit" class = "nav">
+			<h1 id = "title">RECAB</h1>
+			<form action = "{{ url_for('homepage') }}">
+				<button type = "submit" class = "button">
 					<h1>HOME</h1>
 				</button>
 			</form>
@@ -30,8 +31,8 @@
 <!--HEADER-->
 
 <!--CABINET-->
-		<div class = "card">
-			<h1>~~~Cabinet~~~</h1>
+		<div class = "card" id = "namecard">
+			<h2 id = "name">Cabinet</h2>
 		</div>
 <!--CABINET-->
 
@@ -40,21 +41,18 @@
 			<p>Item 1</p>
 			<p>Item 2</p>
 			<p>Item 3</p>
-		</div>
-<!--ITEMS-->
-
 <!--PLUS-->
-		<div class = "plus">
 			<button type = "button" class = "plus">
 				<h1>+</h1>
 			</button>
-		</div>
 <!--PLUS-->
+		</div>
+<!--ITEMS-->
 
 <!--FOOTER-->
 		<div class = "footer">
 			<form action="{{ url_for('logout') }}">
-				<button type = "submit" class = "nav">
+				<button type = "submit" class = "button">
 					<h1>LOG OUT</h1>
 				</button>
 			</form>
