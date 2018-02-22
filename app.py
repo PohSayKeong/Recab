@@ -6,6 +6,8 @@ from flask_heroku import Heroku
 from werkzeug.utils import secure_filename
 import os
 import config
+import flask_login
+import flask
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
@@ -23,6 +25,40 @@ class Dataentry(db.Model):
 
 session = {}
 
+class User(flask_login.UserMixin):
+    pass
+
+users = {'foo@bar.tld': {'password': 'secret'}}
+
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
+
+
+@login_manager.user_loader
+def user_loader(email):
+    if email not in users:
+        return
+
+    user = User()
+    user.id = email
+    return user
+
+
+@login_manager.request_loader
+def request_loader(request):
+    email = request.form.get('email')
+    if email not in users:
+        return
+
+    user = User()
+    user.id = email
+
+    # DO NOT ever store passwords in plaintext and always compare password
+    # hashes using constant-time comparison!
+    user.is_authenticated = request.form['password'] == users[email]['password']
+
+    return user
+
 #main
 
 @app.route("/submit", methods=["POST"])
@@ -39,7 +75,24 @@ def post_to_db():
         sys.stdout.flush()
     return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("homepage"))
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    username = flask.request.form["username"]
+    if request.method == 'POST' and flask.request.form["password"] == users[username]['password']:
+        print("ran")
+        user = User()
+        user.id = username
+        flask_login.login_user(user)
+        return flask.redirect(url_for('homepage'))
+    return render_template("login.html")
+
+@app.route('/logout')
+def logout():
+    flask_login.logout_user()
+    return 'Logged out'
+
 @app.route('/', methods=["GET","POST"])
+@flask_login.login_required
 def homepage():
     if request.method == 'POST' and 'photo' in request.files:
         photo = request.files['photo']

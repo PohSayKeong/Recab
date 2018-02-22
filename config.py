@@ -5,7 +5,7 @@ S3_KEY                    = os.environ.get("S3_ACCESS_KEY")
 S3_SECRET                 = os.environ.get("S3_SECRET_ACCESS_KEY")
 S3_LOCATION               = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
 
-SECRET_KEY                = os.urandom(32)
+SECRET_KEY                = "Recab"
 DEBUG                     = True
 PORT                      = 5000
 SESSION_TYPE              = "filesystem"
