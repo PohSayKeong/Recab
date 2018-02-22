@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 import sys
 import json
@@ -8,6 +8,8 @@ import os
 import config
 import flask_login
 import flask
+from flask_session import Session
+from config import SECRET_KEY, SESSION_TYPE
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
@@ -23,15 +25,15 @@ class Dataentry(db.Model):
     def __init__(self, mydata):
         self.mydata = mydata
 
-session = {}
-
 class User(flask_login.UserMixin):
     pass
 
 users = {'foo@bar.tld': {'password': 'secret'}}
 
 login_manager = flask_login.LoginManager()
+login_manager.login_view = "/login"
 login_manager.init_app(app)
+app.secret_key = SECRET_KEY
 
 
 @login_manager.user_loader
@@ -77,19 +79,22 @@ def post_to_db():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    username = flask.request.form["username"]
-    if request.method == 'POST' and flask.request.form["password"] == users[username]['password']:
-        print("ran")
+    if request.method == 'POST' and flask.request.form["password"] == users[flask.request.form["username"]]['password']:
+        username = flask.request.form["username"]
         user = User()
         user.id = username
         flask_login.login_user(user)
         return flask.redirect(url_for('homepage'))
     return render_template("login.html")
 
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
+
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return 'Logged out'
+    return flask.redirect(url_for('login'))
 
 @app.route('/', methods=["GET","POST"])
 @flask_login.login_required
@@ -103,10 +108,12 @@ def homepage():
     return render_template("home.html")
 
 @app.route('/cabinet', methods=["GET","POST"])
+@flask_login.login_required
 def cabinetpage():
     return render_template("cabinet.html")
 
 @app.route('/newcabinet', methods=["GET","POST"])
+@flask_login.login_required
 def newcabinetpage():
     image_link = session.get('image_link', None)
     return render_template("newcabinet.html", image_link=image_link)

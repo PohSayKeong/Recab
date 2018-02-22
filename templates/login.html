@@ -17,7 +17,9 @@
 			</form>
 			<br>
 			<br>
-			<input type="submit" class="gotosignup" value="Sign up for Recab!">
+			<form action="{{ url_for('signup') }}">
+				<input type="submit" class="gotosignup" value="Sign up for Recab!">
+			<form>
 		</div>
 	</body>
 </html>

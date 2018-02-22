@@ -18,8 +18,10 @@
 				<input type="submit" class="loginsubmit" value="Enter">
 				<br>
 				<br>
-				<input type="submit" class="gotologin" value="Login to Recab">
 			</form>
+			<form action="{{ url_for('login') }}">
+				<input type="submit" class="gotologin" value="Login to Recab">
+			<form>
 		</div>
 	</body>
 </html>
