@@ -20,7 +20,7 @@ db.init_app(app)
 from helpers import *
 
 class UserLog(db.Model):
-    __tablename__ = "user"
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Text())
     password = db.Column(db.Text())
@@ -32,7 +32,7 @@ class UserLog(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-users = {'foo@bar.tld': {'password': 'secret'}}
+users = {}
 
 login_manager = flask_login.LoginManager()
 login_manager.login_view = "/login"
@@ -41,27 +41,27 @@ app.secret_key = SECRET_KEY
 
 
 @login_manager.user_loader
-def user_loader(email):
-    if email not in users:
+def user_loader(username):
+    if username not in users:
         return
 
     user = User()
-    user.id = email
+    user.id = username
     return user
 
 
 @login_manager.request_loader
 def request_loader(request):
-    email = request.form.get('email')
-    if email not in users:
+    username = request.form.get('username')
+    if username not in users:
         return
 
     user = User()
-    user.id = email
+    user.id = username
 
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = request.form['password'] == users[email]['password']
+    user.is_authenticated = request.form['password'] == users[username]['password']
 
     return user
 
@@ -70,7 +70,9 @@ def request_loader(request):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     for u in db.session.query(UserLog).all():
-        print (u.__dict__)
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        users[data['username']] = data
     if request.method == 'POST' and flask.request.form["password"] == users[flask.request.form["username"]]['password']:
         username = flask.request.form["username"]
         user = User()
@@ -92,6 +94,10 @@ def signup():
             print("\n FAILED entry: {}\n".format(json.dumps(data)))
             print(e)
             sys.stdout.flush()
+        for u in db.session.query(UserLog).all():
+            data = u.__dict__.copy()
+            del data["_sa_instance_state"]
+            users[data['username']] = data
         user = User()
         user.id = flask.request.form["username"]
         flask_login.login_user(user)
