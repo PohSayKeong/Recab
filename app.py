@@ -14,6 +14,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db = SQLAlchemy(app)
+db.init_app(app)
 
 from helpers import *
 
@@ -24,6 +25,16 @@ class Dataentry(db.Model):
 
     def __init__(self, mydata):
         self.mydata = mydata
+
+class UserLog(db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text())
+    password = db.Column(db.Text())
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password= password
 
 class User(flask_login.UserMixin):
     pass
@@ -87,8 +98,23 @@ def login():
         return flask.redirect(url_for('homepage'))
     return render_template("login.html")
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST' and request.form['password']==request.form['repassword']:
+        indata = UserLog(request.form['username'],request.form['password'])
+        data = indata.__dict__.copy()
+        del data["_sa_instance_state"]
+        try:
+            db.session.add(indata)
+            db.session.commit()
+        except Exception as e:
+            print("\n FAILED entry: {}\n".format(json.dumps(data)))
+            print(e)
+            sys.stdout.flush()
+        user = User()
+        user.id = flask.request.form["username"]
+        flask_login.login_user(user)
+        return flask.redirect(url_for('homepage'))
     return render_template("signup.html")
 
 @app.route('/logout')
