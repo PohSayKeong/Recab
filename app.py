@@ -12,19 +12,12 @@ from flask_session import Session
 from config import SECRET_KEY, SESSION_TYPE
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 heroku = Heroku(app)
 db = SQLAlchemy(app)
 db.init_app(app)
 
 from helpers import *
-
-class Dataentry(db.Model):
-    __tablename__ = "dataentry"
-    id = db.Column(db.Integer, primary_key=True)
-    mydata = db.Column(db.Text())
-
-    def __init__(self, mydata):
-        self.mydata = mydata
 
 class UserLog(db.Model):
     __tablename__ = "user"
@@ -74,22 +67,10 @@ def request_loader(request):
 
 #main
 
-@app.route("/submit", methods=["POST"])
-def post_to_db():
-    indata = Dataentry(request.form['mydata'])
-    data = indata.__dict__.copy()
-    del data["_sa_instance_state"]
-    try:
-        db.session.add(indata)
-        db.session.commit()
-    except Exception as e:
-        print("\n FAILED entry: {}\n".format(json.dumps(data)))
-        print(e)
-        sys.stdout.flush()
-    return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("homepage"))
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    for u in db.session.query(UserLog).all():
+        print (u.__dict__)
     if request.method == 'POST' and flask.request.form["password"] == users[flask.request.form["username"]]['password']:
         username = flask.request.form["username"]
         user = User()
