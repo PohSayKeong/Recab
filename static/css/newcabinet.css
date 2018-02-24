@@ -8,8 +8,36 @@ html, body {
     min-height: 100%;
 }
 
+html {
+	overflow: auto;
+}
+
 body {
 	background: linear-gradient(to bottom right, #94effa, #c294fa);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+  bottom: 0px;
+	right: 0px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+::-webkit-scrollbar {
+	width: auto;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: #ffffff;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .header {
@@ -18,7 +46,6 @@ body {
 	border-radius: 50px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	position: sticky;
 	top: 0;
 	margin: 10px auto;
@@ -33,15 +60,11 @@ body {
 .button {
 	background: black;
 	color: white;
-	border: none;
+	border: 2px solid black;
 	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	margin: 5px;
 	width : 80px;
 	height: 80px;
-	font-size: 50%;
 	transition-duration: 0.2s;
   cursor: pointer;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -50,25 +73,15 @@ body {
 .button:hover {
 	background: white;
 	color: black;
-	border: 2px solid black;
 }
 
-.imgbutton {
-	background: black;
-	border: 2px solid black;
+#imgbutton {
 	border-radius: 50px;
-	color: white;
 	margin: 10px auto;
 	padding: 20px;
 	padding-top: 0px;
-	transition-duration: 0.2s;
-  cursor: pointer;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.imgbutton:hover {
-	background: white;
-	color: black;
+	width: auto;
+	height: auto;
 }
 
 .img {
@@ -89,12 +102,6 @@ body {
 	text-align: center;
 }
 
-.form {
-	position: relative;
-	left: 30px;
-	text-align: left;
-}
-
 #done {
 	margin: 10px auto;
 	border-radius: 50px;
@@ -107,6 +114,7 @@ body {
 
 #description {
 	width: 75vw;
+	resize: vertical;
 }
 
 .footer {
@@ -115,7 +123,6 @@ body {
 	border-radius: 50px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	margin: 10px auto;
 	width: 90%;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);

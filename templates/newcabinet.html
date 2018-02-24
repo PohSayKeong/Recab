@@ -11,6 +11,12 @@
 		<link href="../static/css/newcabinet.css?q=1280549780" type="text/css" rel="stylesheet">
 		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-hires.png" rel="icon" sizes="192x192" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-normal.png" rel="icon" sizes="128x128" />
 
 	</head>
 
@@ -18,42 +24,50 @@
 
 <!--HEADER-->
 		<div class = "header">
+<!--BACK-->
 			<button type = "button" class = "button"  onclick="window.history.back()">
-				<h1>BACK</h1>
+				<h2>BACK</h2>
 			</button>
+<!--BACK-->
+<!--TITLE-->
 			<h1 id = "title">RECAB</h1>
+<!--TITLE-->
+<!--HOME-->
 			<form action="{{ url_for('homepage') }}">
 				<button type = "submit" class = "button">
-					<h1>HOME</h1>
+					<h2>HOME</h2>
 				</button>
 			</form>
+<!--HOME-->
 		</div>
 <!--HEADER-->
 
 <!--IMG-->
 		<form method=POST enctype=multipart/form-data>
-			<button type = "button" class = "imgbutton" id = "loadFileXml" onclick = "document.getElementById('photo').click();">
-				<p>Click to add/edit image</p>
-			</button>
+			<button type = "button" class = "button" id = "imgbutton" onclick = "document.getElementById('photo').click();">
+				<h3>Click to add/edit image</h3>
+				<img src = {{ image_link }} class = "img" style= {{ display }}>
+			</button><br>
 			<input type = "file" accept = "image/*;capture=camera" style="display:none;" id = "photo" name = "photo" onchange="document.getElementById('submit').click();"/>
 			<input type="submit" id="submit" style="display:none;">
 		</form>
-				<img src = {{ image_link }} class = "img" style= {{ display }}>
 <!--IMG-->
 
 <!--FORM-->
 		<form method=POST enctype=multipart/form-data>
-		<div class = "card">
-			<form class = "form">
-				CABINET NAME:<br>
-				<input type="text" placeholder = "Enter Cabinet Name" class = "input" name = "name"><br><br>
-				DESCRIPTION:<br>
-				<input type="text" placeholder = "Enter Description" class = "input" id = "description" name = "description">
-			</form>
+			<div class = "card">
+				<form>
+					CABINET NAME:<br>
+					<input type="text" placeholder = "Enter Cabinet Name" class = "input" name= "name"><br><br>
+					DESCRIPTION:<br>
+					<!--<input type="text" placeholder = "Enter Description" class = "input" id = "description" name = "description">-->
+					<textarea placeholder = "Enter Description" class = "input" id = "description" name = "description"></textarea>
+					</input>
+				</form>
 <!--DONE-->
-			<button type = "submit" class = "button" id = "done">
-				<h1>GET ORGANISED!</h1>
-			</button>
+				<button type = "submit" class = "button" id = "done">
+					<h2>GET ORGANISED!</h2>
+				</button>
 <!--DONE-->
 			</div>
 		</form>
@@ -61,11 +75,13 @@
 
 <!--FOOTER-->
 		<div class = "footer">
+<!--LOGOUT-->
 			<form action="{{ url_for('logout') }}">
 				<button type = "submit" class = "button">
-					<h1>LOG OUT</h1>
+					<h2>LOG OUT</h2>
 				</button>
 			</form>
+<!--LOGOUT-->
 		</div>
 <!--FOOTER-->
 

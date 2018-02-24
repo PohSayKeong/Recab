@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<link href="../static/css/signup.css?q=1280549780" type="text/css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Francois+One|Pacifico" rel="stylesheet">
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-hires.png" rel="icon" sizes="192x192" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-normal.png" rel="icon" sizes="128x128" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<div class='login'>
-			<h1>-Recab-</h1>
+		<div class='signup'>
+			<h1 id = "appnamb">Recab</h1>
 			<h2>Sign Up</h2>
 			<form method="POST">
-				<input type="text" name="username" placeholder="Username"><br>
+				<input type="text" name="username" class="username" placeholder="Username"><br>
+				<input type="password" name="password" class="password" placeholder="Password"><br>
+				<input type="password" name="repassword" class="password" placeholder="Re-enter Password"><br>
 				<br>
-				<input type="password" name="password" placeholder="Password"><br>
-				<input type="password" name="repassword" placeholder="Re-enter Password"><br>
-				<br>
-				<input type="submit" class="loginsubmit" value="Enter">
-				<br>
+				<input type="submit" class="signupsubmit" value="Enter">
 				<br>
 			</form>
 			<form action="{{ url_for('login') }}">
-				<input type="submit" class="gotologin" value="Login to Recab">
-			<form>
+				<input type="submit" class="gotologin" value="Already have an account? Login!">
+			</form>
 		</div>
 	</body>
 </html>

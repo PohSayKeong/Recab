@@ -1,31 +1,93 @@
+html, body {
+	margin: 0;
+	min-height: 100%;
+}
+
 body {
 	background-image: url("../images/marble.jpg");
 }
 
-.login {
-	position: absolute;
-    top:25%;
-    bottom:5%;
-	right: 0;
-	left: 0;
-	border-radius: 50px;
-	background: linear-gradient(to bottom right, #c294fa, #94effa);
-	width: 25%;
-	margin: 10px auto;
-	padding: 10px;
+.signup {
+	position: relative;
+	bottom: 20px;
+	margin: 30px auto 0;
+	border-radius: 10%;
+	background: linear-gradient(to bottom right, #94effa, #c294fa);
+	width: 40%;
+	padding: 10px ;
+	padding-bottom: 20px;
 	text-align: center;
-	font-family: 'Monoton', cursive;
+	font-family: "Oswald";
 	border: 3px solid black;
 }
 
-.loginsubmit {
-	font-family: 'Francois One', sans-serif;
-	border-radius: 10px;
-	border: 1px solid black;
+#appnamb {
+	font-family: Pacifico;
+	font-size: 5vw;
 }
 
-.gotologin {
-	font-family: 'Francois One', sans-serif;
+.username {
+	border: 2px solid black;
 	border-radius: 10px;
-	border: 1px solid black;
+	width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.password {
+	border: 2px solid black;
+	border-radius: 10px;
+	width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.signupsubmit {
+	font-family: 'Francois One', sans-serif;
+	border: 2px solid black;
+	border-radius: 10px;
+	width: 25% auto;
+	background: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	margin: 5px auto;
+	font-size: 100%;
+	transition-duration: 0.2s;
+	cursor: pointer;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.signupsubmit:hover {
+	background: white;
+	color: black;
+}
+
+
+.gotologin {
+		font-family: 'Francois One', sans-serif;
+		font-size: 1vw;
+		border: 2px solid black;
+		border-radius: 10px;
+		width: 25% auto;
+		background: black;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: auto;
+		margin: 5px auto;
+		transition-duration: 0.2s;
+		cursor: pointer;
+		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+.gotologin:hover {
+	background: white;
+	color: black;
 }

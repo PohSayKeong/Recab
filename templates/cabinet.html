@@ -11,6 +11,12 @@
 	  <link href="../static/css/cabinet.css?q=1280549780" type="text/css" rel="stylesheet">
 		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-hires.png" rel="icon" sizes="192x192" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-normal.png" rel="icon" sizes="128x128" />
 
 		<script>
 			function showNew_hidePlus() {
@@ -18,21 +24,28 @@
 				document.getElementById("plus").style.display = "none";
 			}
 		</script>
+
 	</head>
 
 	<body>
 
 <!--HEADER-->
 		<div class = "header">
+<!--BACK-->
 			<button type = "button" class = "button" onclick = "window.history.back()">
-				<h1>BACK</h1>
+				<h2>BACK</h2>
 			</button>
+<!--BACK-->
+<!--TITLE-->
 			<h1 id = "title">RECAB</h1>
+<!--TITLE-->
+<!--HOME-->
 			<form action = "{{ url_for('homepage') }}">
 				<button type = "submit" class = "button">
-					<h1>HOME</h1>
+					<h2>HOME</h2>
 				</button>
 			</form>
+<!--HOME-->
 		</div>
 <!--HEADER-->
 
@@ -55,7 +68,7 @@
 				<input type="text" placeholder = "Enter New Item" class = "input" id = "new" name = "item"><br>
 <!--DONE-->
 				<button type = "submit" class = "button" id = "done">
-					<h1>DONE</h1>
+					<h2>DONE</h2>
 				</button>
 <!--DONE-->
 			</form>
@@ -63,7 +76,7 @@
 <!--ADD ITEM-->
 
 <!--PLUS-->
-			<button type = "button" class = "plus" id = "plus" onclick="showNew_hidePlus()">
+			<button type = "button" class = "button" id = "plus" onclick="showNew_hidePlus()">
 				<h1>+</h1>
 			</button>
 <!--PLUS-->
@@ -72,11 +85,18 @@
 
 <!--FOOTER-->
 		<div class = "footer">
+<!--LOGOUT-->
 			<form action="{{ url_for('logout') }}">
 				<button type = "submit" class = "button">
-					<h1>LOG OUT</h1>
+					<h2>LOG OUT</h2>
 				</button>
 			</form>
+<!--LOGOUT-->
+<!--EDIT-->
+			<button type = "submit" class = "button">
+				<h2>EDIT</h2>
+			</button>
+<!--EDIT-->
 		</div>
 <!--FOOTER-->
 

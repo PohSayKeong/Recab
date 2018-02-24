@@ -11,6 +11,12 @@
 		<link href="../static/css/home.css?q=1280549780" type="text/css" rel="stylesheet">
 		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-hires.png" rel="icon" sizes="192x192" />
+		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/icon-normal.png" rel="icon" sizes="128x128" />
 
 	</head>
 
@@ -35,19 +41,26 @@
 
 <!--PLUS-->
 		<form action ="{{ url_for('newcabinetpage') }}" >
-			<button type = "submit" class = "plus">
-					<h1 class = "card-text">+</h1>
+			<button type = "submit" class = "button" id = "plus">
+					<h1>+</h1>
 			</button>
 		</form>
 <!--PLUS-->
 
 <!--FOOTER-->
 		<div class = "footer">
+<!--LOGOUT-->
 			<form action="{{ url_for('logout') }}">
 				<button type = "submit" class = "button">
-					<h1>LOG OUT</h1>
+					<h2>LOG OUT</h2>
 				</button>
 			</form>
+<!--LOGOUT-->
+<!--EDIT-->
+			<button type = "submit" class = "button">
+				<h2>EDIT</h2>
+			</button>
+<!--EDIT-->
 		</div>
 <!--FOOTER-->
 
