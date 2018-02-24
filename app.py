@@ -140,6 +140,7 @@ def logout():
 def homepage():
     cabinets = []
     to_display = []
+    images = []
     for u in db.session.query(Cabinet).all():
         data = u.__dict__.copy()
         del data["_sa_instance_state"]
@@ -148,18 +149,24 @@ def homepage():
         for val in dic.values():
             if val == flask_login.current_user.id:
                 to_display.append(dic["name"])
+                images.append(dic["image"])
     if request.method == 'POST':
         for i in to_display:
             if i in request.form:
                 session['cabinet'] = i
+                for dic in cabinets:
+                    for val in dic.values():
+                        if val == session['cabinet']:
+                            session['cabinet_image'] = dic["image"]
         return flask.redirect(url_for('cabinetpage'))
-    return render_template("home.html", cabinets=to_display)
+    return render_template("home.html", cabinets=to_display, images=images)
 
 @app.route('/cabinet', methods=["GET","POST"])
 @flask_login.login_required
 def cabinetpage():
     items = []
     to_display = []
+    image = session['cabinet_image']
     for u in db.session.query(Item).all():
         data = u.__dict__.copy()
         del data["_sa_instance_state"]
@@ -180,7 +187,7 @@ def cabinetpage():
             print(e)
             sys.stdout.flush()
         return flask.redirect(url_for('cabinetpage'))
-    return render_template("cabinet.html", items = to_display, cabinet = session['cabinet'])
+    return render_template("cabinet.html", items = to_display, cabinet = session['cabinet'], image=image)
 
 @app.route('/newcabinet', methods=["GET","POST"])
 @flask_login.login_required

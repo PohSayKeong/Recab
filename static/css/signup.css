@@ -13,7 +13,7 @@ body {
 	margin: 30px auto 0;
 	border-radius: 10%;
 	background: linear-gradient(to bottom right, #94effa, #c294fa);
-	width: 40%;
+	width: 70%;
 	padding: 10px ;
 	padding-bottom: 20px;
 	text-align: center;
@@ -23,7 +23,8 @@ body {
 
 #appnamb {
 	font-family: Pacifico;
-	font-size: 5vw;
+	font-size: 8vw;
+	margin: 0;
 }
 
 .username {
@@ -72,7 +73,7 @@ body {
 
 .gotologin {
 		font-family: 'Francois One', sans-serif;
-		font-size: 1vw;
+		font-size: 12px;
 		border: 2px solid black;
 		border-radius: 10px;
 		width: 25% auto;
@@ -86,6 +87,7 @@ body {
 		transition-duration: 0.2s;
 		cursor: pointer;
 		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
 
 .gotologin:hover {
 	background: white;

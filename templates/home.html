@@ -29,11 +29,12 @@
 <!--HEADER-->
 
 <!--CABINETS-->
-		{% for cabinet in cabinets %}
+		{% for i in range(cabinets|length) %}
 			<form method=POST>
-				<input type="hidden" name="{{ cabinet }}" value="{{ cabinet }}">
+				<input type="hidden" name="{{ cabinets[i] }}" value="{{ cabinets[i] }}">
 				<button type = "submit" class = "card">
-					<h2 class = "card-text">{{ cabinet }}</h2>
+					<h2 class = "card-text">{{ cabinets[i] }}</h2>
+					<img src="{{ images[i] }}" class = "img">
 				</button>
 			</form>
 		{% endfor %}
