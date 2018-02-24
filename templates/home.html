@@ -24,7 +24,8 @@
 
 <!--CABINETS-->
 		{% for cabinet in cabinets %}
-			<form action="{{ url_for('cabinetpage') }}">
+			<form method=POST>
+				<input type="hidden" name="{{ cabinet }}" value="{{ cabinet }}">
 				<button type = "submit" class = "card">
 					<h2 class = "card-text">{{ cabinet }}</h2>
 				</button>

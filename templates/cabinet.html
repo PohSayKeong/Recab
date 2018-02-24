@@ -12,6 +12,12 @@
 		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
+		<script>
+			function showNew_hidePlus() {
+ 				document.getElementById("newDiv").style.display = "block";
+				document.getElementById("plus").style.display = "none";
+			}
+		</script>
 	</head>
 
 	<body>
@@ -32,17 +38,32 @@
 
 <!--CABINET-->
 		<div class = "card" id = "namecard">
-			<h2 id = "name">Cabinet</h2>
+			<h2 id = "name">{{ cabinet }}</h2>
 		</div>
 <!--CABINET-->
 
 <!--ITEMS-->
 		<div class = "card">
-			<p>Item 1</p>
-			<p>Item 2</p>
-			<p>Item 3</p>
+			{% for item in items %}
+				<p>{{ item }}</p>
+			{% endfor %}
+
+<!--ADD ITEM-->
+		<div id="newDiv">
+			<form method=POST>
+				NEW ITEM:<br>
+				<input type="text" placeholder = "Enter New Item" class = "input" id = "new" name = "item"><br>
+<!--DONE-->
+				<button type = "submit" class = "button" id = "done">
+					<h1>DONE</h1>
+				</button>
+<!--DONE-->
+			</form>
+		</div>
+<!--ADD ITEM-->
+
 <!--PLUS-->
-			<button type = "button" class = "plus">
+			<button type = "button" class = "plus" id = "plus" onclick="showNew_hidePlus()">
 				<h1>+</h1>
 			</button>
 <!--PLUS-->

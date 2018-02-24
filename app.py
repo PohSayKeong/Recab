@@ -148,12 +148,39 @@ def homepage():
         for val in dic.values():
             if val == flask_login.current_user.id:
                 to_display.append(dic["name"])
+    if request.method == 'POST':
+        for i in to_display:
+            if i in request.form:
+                session['cabinet'] = i
+        return flask.redirect(url_for('cabinetpage'))
     return render_template("home.html", cabinets=to_display)
 
 @app.route('/cabinet', methods=["GET","POST"])
 @flask_login.login_required
 def cabinetpage():
-    return render_template("cabinet.html")
+    items = []
+    to_display = []
+    for u in db.session.query(Item).all():
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        items.append(data)
+    for dic in items:
+        for val in dic.values():
+            if val == session['cabinet'] and dic["user"] == flask_login.current_user.id:
+                to_display.append(dic["item"])
+    if request.method == 'POST' and 'item' in request.form:
+        indata = Item(request.form['item'], flask_login.current_user.id, session['cabinet'])
+        data = indata.__dict__.copy()
+        del data["_sa_instance_state"]
+        try:
+            db.session.add(indata)
+            db.session.commit()
+        except Exception as e:
+            print("\n FAILED entry: {}\n".format(json.dumps(data)))
+            print(e)
+            sys.stdout.flush()
+        return flask.redirect(url_for('cabinetpage'))
+    return render_template("cabinet.html", items = to_display, cabinet = session['cabinet'])
 
 @app.route('/newcabinet', methods=["GET","POST"])
 @flask_login.login_required
