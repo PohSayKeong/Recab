@@ -35,11 +35,13 @@ class Cabinet(db.Model):
     name = db.Column(db.Text())
     user = db.Column(db.Text())
     description = db.Column(db.Text())
+    image = db.Column(db.Text())
 
-    def __init__(self, name, user, description):
+    def __init__(self, name, user, description, image):
         self.name = name
         self.user = user
         self.description = description
+        self.image = image
 
 class Item(db.Model):
     __tablename__ = "items"
