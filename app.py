@@ -29,6 +29,28 @@ class UserLog(db.Model):
         self.username = username
         self.password= password
 
+class Cabinet(db.Model):
+    __tablename__ = "cabinets"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text())
+    user = db.Column(db.Text())
+    description = db.Column(db.Text())
+
+    def __init__(self, name, user, description):
+        self.name = name
+        self.user = user
+        self.description = description
+
+class Item(db.Model):
+    __tablename__ = "items"
+    id = db.Column(db.Integer, primary_key=True)
+    item = db.Column(db.Text())
+    user = db.Column(db.Text())
+
+    def __init__(self, item, user):
+        self.item = item
+        self.user = user
+
 class User(flask_login.UserMixin):
     pass
 
