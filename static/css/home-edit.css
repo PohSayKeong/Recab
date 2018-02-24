@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Home</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="../static/css/home.css?q=1280549780" type="text/css" rel="stylesheet">
+		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+<!--HEADER-->
+		<div class = "header">
+			<h1 id = "title">RECAB</h1>
+		</div>
+<!--HEADER-->
+
+<!--CABINETS-->
+		<form action="{{ url_for('cabinetpage') }}">
+			<button type = "submit" class = "card">
+				<h2 class = "card-text">Cabinet</h2>
+			</button>
+		</form>
+<!--CABINETS-->
+
+<!--PLUS-->
+		<form action ="{{ url_for('newcabinetpage') }}" >
+			<button type = "submit" class = "button" id = "plus">
+					<h1>+</h1>
+			</button>
+		</form>
+<!--PLUS-->
+
+<!--FOOTER-->
+		<div class = "footer">
+<!--LOGOUT-->
+			<form action="{{ url_for('logout') }}">
+				<button type = "submit" class = "button">
+					<h2>LOG OUT</h2>
+				</button>
+			</form>
+<!--LOGOUT-->
+<!--EDIT-->
+			<button type = "submit" class = "button">
+				<h2>EDIT</h2>
+			</button>
+<!--EDIT-->
+		</div>
+<!--FOOTER-->
+
+	</body>
+</html>
