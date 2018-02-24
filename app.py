@@ -48,10 +48,12 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.Text())
     user = db.Column(db.Text())
+    cabinet = db.Column(db.Text())
 
-    def __init__(self, item, user):
+    def __init__(self, item, user, cabinet):
         self.item = item
         self.user = user
+        self.cabinet = cabinet
 
 class User(flask_login.UserMixin):
     pass
@@ -136,7 +138,17 @@ def logout():
 @app.route('/', methods=["GET","POST"])
 @flask_login.login_required
 def homepage():
-    return render_template("home.html")
+    cabinets = []
+    to_display = []
+    for u in db.session.query(Cabinet).all():
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        cabinets.append(data)
+    for dic in cabinets:
+        for val in dic.values():
+            if val == flask_login.current_user.id:
+                to_display.append(dic["name"])
+    return render_template("home.html", cabinets=to_display)
 
 @app.route('/cabinet', methods=["GET","POST"])
 @flask_login.login_required
@@ -152,7 +164,17 @@ def newcabinetpage():
         output = upload_file_to_s3(photo, S3_BUCKET)
         session['image_link'] = str(output)
         return render_template("newcabinet.html", image_link=str(output), display="", method = 'GET')
-    if request.method == 'POST' and 'description' in request.files:
+    if request.method == 'POST' and 'description' in request.form:
+        indata = Cabinet(request.form['name'], flask_login.current_user.id, request.form['description'], session['image_link'])
+        data = indata.__dict__.copy()
+        del data["_sa_instance_state"]
+        try:
+            db.session.add(indata)
+            db.session.commit()
+        except Exception as e:
+            print("\n FAILED entry: {}\n".format(json.dumps(data)))
+            print(e)
+            sys.stdout.flush()
         return flask.redirect(url_for('homepage'))
     return render_template("newcabinet.html", display="display:none;")
 

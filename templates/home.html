@@ -23,11 +23,13 @@
 <!--HEADER-->
 
 <!--CABINETS-->
-		<form action="{{ url_for('cabinetpage') }}">
-			<button type = "submit" class = "card">
-				<h2 class = "card-text">Cabinet</h2>
-			</button>
-		</form>
+		{% for cabinet in cabinets %}
+			<form action="{{ url_for('cabinetpage') }}">
+				<button type = "submit" class = "card">
+					<h2 class = "card-text">{{ cabinet }}</h2>
+				</button>
+			</form>
+		{% endfor %}
 <!--CABINETS-->
 
 <!--PLUS-->
