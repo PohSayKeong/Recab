@@ -35,8 +35,8 @@
 			<button type = "button" class = "imgbutton" id = "loadFileXml" onclick = "document.getElementById('photo').click();">
 				<p>Click to add/edit image</p>
 			</button>
-			<input type = "file" accept = "image/*;capture=camera" style="display:none;" id = "photo" name = "photo"/>
-			<input type="submit">
+			<input type = "file" accept = "image/*;capture=camera" style="display:none;" id = "photo" name = "photo" onchange="document.getElementById('submit').click();"/>
+			<input type="submit" id="submit" style="display:none;">
 		</form>
 				<img src = {{ image_link }} class = "img" style= {{ display }}>
 <!--IMG-->
