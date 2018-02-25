@@ -14,6 +14,11 @@ html {
 
 body {
 	background: linear-gradient(to bottom right, #94effa, #c294fa);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+  bottom: 0px;
+	right: 0px;
 	overflow-y: auto;
 	overflow-x: auto;
 }
@@ -92,14 +97,6 @@ body {
   cursor: pointer;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   text-align: center;
-}
-
-.card-text {
-	font-family: "Shrikhand";
-}
-
-#delete {
-	color: red;
 }
 
 #plus {

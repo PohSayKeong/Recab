@@ -3,12 +3,12 @@
 
 	<head>
 
-		<title>Home - Edit</title>
+		<title>Cabinet - Edit</title>
 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	  <link href="../static/css/home-edit.css?q=1280549780" type="text/css" rel="stylesheet">
+	  <link href="../static/css/cabinet-edit.css?q=1280549780" type="text/css" rel="stylesheet">
 		<link href="../static/images/favicon.ico" type="image" rel="icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
@@ -44,21 +44,21 @@
 		</div>
 		<!--HEADER-->
 
-		<!--CABINETS-->
-		{% for cabinet in cabinets%}
+	<!--ITEMS-->
+		{% for i in range(items|length) %}
 			<form method=POST>
-				<input type="hidden" name="{{ cabinet }}" value="{{ cabinet }}">
+				<input type="hidden" name="{{ items[i] }}" value="{{ items[i] }}">
 				<div class = "card">
 					<!--LEFT-->
 					<div class = "left">
 					</div>
 					<!--LEFT-->
-					<h2 class = "card-text">{{ cabinet }}</h2>
+					<h2>{{ items[i] }}</h2>
 					<!--RIGHT-->
 					<div class = "right">
 						<!--DELETE-->
-						<button type = "submit" class = "button" id = "delete">
-							<h2>&#9587;</h2>
+						<button type = "submit" class = "button">
+							<h1>&#x274C;</h1>
 						</button>
 						<!--DELETE-->
 					</div>
@@ -66,38 +66,38 @@
 				</div>
 			</form>
 		{% endfor %}
-		<!--CABINETS-->
+	<!--ITEMS-->
 
-		<!--PLUS-->
-		<form action = "{{ url_for('cabinetpage') }}" >
-			<button type = "submit" class = "button" id = "plus">
-				<h2>DONE</h2>
-			</button>
-		</form>
-		<!--PLUS-->
+	<!--PLUS-->
+			<form action ="{{ url_for('cabinetpage') }}" >
+				<button type = "submit" class = "button" id = "plus">
+						<h2>DONE</h2>
+				</button>
+			</form>
+	<!--PLUS-->
 
-		<!--FOOTER-->
-		<div class = "footer">
-			<!--LEFT-->
-			<div class = "left">
-				<!--LOGOUT-->
-				<form action = "{{ url_for('logout') }}">
-					<button type = "submit" class = "button">
-						<h2>LOG OUT</h2>
-					</button>
-				</form>
-				<!--LOGOUT-->
-				<!--LOGGED IN AS-->
-				<a href = "#" id = "loggedin">logged in as {{ user }}</a>
-				<!--LOGGED IN AS-->
-			</div>
-			<!--LEFT-->
-			<!--RIGHT-->
-			<div class = "right">
-			</div>
-			<!--RIGHT-->
+	<!--FOOTER-->
+	<div class = "footer">
+		<!--LEFT-->
+		<div class = "left">
+			<!--LOGOUT-->
+			<form action = "{{ url_for('logout') }}">
+				<button type = "submit" class = "button">
+					<h2>LOG OUT</h2>
+				</button>
+			</form>
+			<!--LOGOUT-->
+			<!--LOGGED IN AS-->
+			<a href = "#" id = "loggedin">logged in as {{ user }}</a>
+			<!--LOGGED IN AS-->
 		</div>
-		<!--FOOTER-->
+		<!--LEFT-->
+		<!--RIGHT-->
+		<div class = "right">
+		</div>
+		<!--RIGHT-->
+	</div>
+	<!--FOOTER-->
 
 	</body>
 

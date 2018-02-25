@@ -99,12 +99,15 @@ def login():
         data = u.__dict__.copy()
         del data["_sa_instance_state"]
         users[data['username']] = data
-    if request.method == 'POST' and flask.request.form["password"] == users[flask.request.form["username"]]['password']:
-        username = flask.request.form["username"]
-        user = User()
-        user.id = username
-        flask_login.login_user(user)
-        return flask.redirect(url_for('homepage'))
+    if request.method == 'POST':
+        if flask.request.form["username"] not in users:
+            return flask.redirect(url_for('login'))
+        elif flask.request.form["password"] == users[flask.request.form["username"]]['password']:
+            username = flask.request.form["username"]
+            user = User()
+            user.id = username
+            flask_login.login_user(user)
+            return flask.redirect(url_for('homepage'))
     return render_template("login.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -211,6 +214,50 @@ def newcabinetpage():
             sys.stdout.flush()
         return flask.redirect(url_for('homepage'))
     return render_template("newcabinet.html", display="display:none;")
+
+@app.route('/cabinet-edit', methods=["GET","POST"])
+@flask_login.login_required
+def cabineteditpage():
+    items = []
+    to_display = []
+    for u in db.session.query(Item).all():
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        items.append(data)
+    for dic in items:
+        for val in dic.values():
+            if val == session['cabinet'] and dic["user"] == flask_login.current_user.id:
+                to_display.append(dic["item"])
+    if request.method == 'POST':
+        for i in to_display:
+            if i in request.form:
+                db.session.query(Item).filter_by(item=i, user=flask_login.current_user.id, cabinet=session['cabinet']).delete()
+                db.session.commit()
+        return flask.redirect(url_for('cabineteditpage'))
+    return render_template("cabinet-edit.html", items = to_display, cabinet = session['cabinet'], user = flask_login.current_user.id)
+
+@app.route('/home-edit', methods=["GET","POST"])
+@flask_login.login_required
+def homeeditpage():
+    cabinets = []
+    to_display = []
+    for u in db.session.query(Cabinet).all():
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        cabinets.append(data)
+    for dic in cabinets:
+        for val in dic.values():
+            if val == flask_login.current_user.id:
+                to_display.append(dic["name"])
+    if request.method == 'POST':
+        for i in to_display:
+            if i in request.form:
+                print(i)
+                db.session.query(Cabinet).filter_by(name=i, user=flask_login.current_user.id).delete()
+                db.session.query(Item).filter_by(cabinet=i).delete()
+                db.session.commit()
+        return flask.redirect(url_for('homeeditpage'))
+    return render_template("home-edit.html", cabinets=to_display)
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
