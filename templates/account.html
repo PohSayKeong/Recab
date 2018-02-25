@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Your Profile</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="../static/css/account.css" type="text/css" rel="stylesheet">
+		<link href="../static/images/favicon.ico" type="image" rel="icon">
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
+
+    <script>
+			function confirm1() {
+        document.getElementById("delete").style.display = "none";
+ 				document.getElementById("confirm1").style.display = "block";
+			}
+      function confirm2() {
+        document.getElementById("confirm1").style.display = "none";
+ 				document.getElementById("confirm2").style.display = "block";
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		<!--HEADER-->
+		<div class = "header">
+			<!--LEFT-->
+			<div class = "left">
+				<!--BACK-->
+				<button type = "button" class = "button" id = "back" onclick = "window.history.back()">
+					<h2>BACK</h2>
+				</button>
+				<!--BACK-->
+			</div>
+			<!--LEFT-->
+			<!--TITLE-->
+			<h1 id = "title">RECAB</h1>
+			<!--TITLE-->
+			<!--RIGHT-->
+			<div class = "right">
+				<!--HOME-->
+				<form action = "{{ url_for('homepage') }}">
+					<button type = "submit" class = "button" id = "home">
+						<h2>HOME</h2>
+					</button>
+				</form>
+				<!--HOME-->
+			</div>
+			<!--RIGHT-->
+		</div>
+		<!--HEADER-->
+
+    <!--CARD-->
+    <div class = "card">
+      <!--NAME-->
+      <h1>{{ user }}</h1>
+      <!--NAME-->
+    </div>
+    <!--CARD-->
+
+    <!--DELETE-->
+		<form method=POST>
+	    <button type = "button" class = "card" id = "delete" onclick = "confirm1()">
+	      <h1 class = "danger">DELETE YOUR ACCOUNT</h1>
+	    </button>
+    <!--CONFIRM-->
+	    <div id = "confirm1" onclick = "confirm2()">
+	      <h1 class = "danger">WARNING! YOUR ACCOUNT CANNOT BE RECOVERED ONCE DELETED.</h1>
+	      <h1 class = "danger">IF YOU ARE SURE YOU WANT TO DELETE YOUR ACCOUNT, PLEASE CLICK THE BUTTON BELOW:</h1>
+	      <button type = "button" class = "card" id = "confirmdelete1">
+	        <h1 class = "danger">DELETE</h1>
+	      </button>
+	    </div>
+    <!--CONFIRM-->
+    <!--CONFIRM AGAIN-->
+	    <div id = "confirm2">
+	      <h1 class = "danger">ARE YOU VERY SURE?</h1>
+	      <button type = "submit" class = "card" class = "confirmdelete2">
+	        <h1 class = "danger">DELETE</h1>
+	      </button>
+	    </div>
+		</form>
+    <!--CONFIRM AGAIN-->
+    <!--DELETE-->
+
+    <!--FOOTER-->
+      <div class = "footer">
+        <!--LEFT-->
+        <div class = "left">
+          <!--LOGOUT-->
+          <form action = "{{ url_for('logout') }}">
+            <button type = "submit" class = "button">
+              <h2>LOG OUT</h2>
+            </button>
+          </form>
+          <!--LOGOUT-->
+        </div>
+        <!--LEFT-->
+        <!--RIGHT-->
+        <div class = "right">
+        </div>
+        <!--RIGHT-->
+      </div>
+      <!--FOOTER-->

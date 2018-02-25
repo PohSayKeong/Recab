@@ -252,12 +252,22 @@ def homeeditpage():
     if request.method == 'POST':
         for i in to_display:
             if i in request.form:
-                print(i)
                 db.session.query(Cabinet).filter_by(name=i, user=flask_login.current_user.id).delete()
-                db.session.query(Item).filter_by(cabinet=i).delete()
+                db.session.query(Item).filter_by(user=flask_login.current_user.id, cabinet=i).delete()
                 db.session.commit()
         return flask.redirect(url_for('homeeditpage'))
-    return render_template("home-edit.html", cabinets=to_display)
+    return render_template("home-edit.html", cabinets=to_display, user = flask_login.current_user.id)
+
+@app.route('/account', methods=["GET","POST"])
+@flask_login.login_required
+def accountpage():
+    if request.method == 'POST':
+        db.session.query(UserLog).filter_by(username=flask_login.current_user.id).delete()
+        db.session.query(Cabinet).filter_by(user=flask_login.current_user.id).delete()
+        db.session.query(Item).filter_by(user=flask_login.current_user.id).delete()
+        db.session.commit()
+        return flask.redirect(url_for('login'))
+    return render_template("account.html", user=flask_login.current_user.id)
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
