@@ -57,6 +57,11 @@
 
     <!--CARD-->
     <div class = "card">
+      <!--AVATAR-->
+      <button type = "button" class = "button" id = "avatar">
+      	<img src = "../static/images/missing_avatar.png" class = "img">
+      </button>
+      <!--AVATAR-->
       <!--NAME-->
       <h1>{{ user }}</h1>
       <!--NAME-->
@@ -68,7 +73,7 @@
 	    <button type = "button" class = "card" id = "delete" onclick = "confirm1()">
 	      <h1 class = "danger">DELETE YOUR ACCOUNT</h1>
 	    </button>
-    <!--CONFIRM-->
+	    <!--CONFIRM-->
 	    <div id = "confirm1" onclick = "confirm2()">
 	      <h1 class = "danger">WARNING! YOUR ACCOUNT CANNOT BE RECOVERED ONCE DELETED.</h1>
 	      <h1 class = "danger">IF YOU ARE SURE YOU WANT TO DELETE YOUR ACCOUNT, PLEASE CLICK THE BUTTON BELOW:</h1>
@@ -76,8 +81,8 @@
 	        <h1 class = "danger">DELETE</h1>
 	      </button>
 	    </div>
-    <!--CONFIRM-->
-    <!--CONFIRM AGAIN-->
+	    <!--CONFIRM-->
+	    <!--CONFIRM AGAIN-->
 	    <div id = "confirm2">
 	      <h1 class = "danger">ARE YOU VERY SURE?</h1>
 	      <button type = "submit" class = "card" class = "confirmdelete2">

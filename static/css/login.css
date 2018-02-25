@@ -5,16 +5,18 @@ html, body {
 
 body {
 	background-image: url("../images/marble.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .login {
-	position: relative;
-	bottom: 10px;
-	margin: 30px auto 0;
+	margin: auto;
 	border-radius: 10%;
 	background: linear-gradient(to bottom right, #94effa, #c294fa);
-	width: 70%;
-	padding: 10px ;
+	margin-top: 3vmin;
+	margin-bottom: 3vmin;
+	width: 50vmax;
+	padding: 10px;
 	padding-bottom: 20px;
 	text-align: center;
 	font-family: "Oswald";
@@ -23,8 +25,7 @@ body {
 
 #appnamb {
 	font-family: Pacifico;
-	font-size: 8vw;
-	margin: 0;
+	font-size: 5vw;
 }
 
 .username {

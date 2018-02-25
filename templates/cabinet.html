@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	  <link href="../static/css/cabinet.css?q=1280549780" type="text/css" rel="stylesheet">
-		<link href="../static/images/favicon.ico" type = "image" rel = "icon">
+		<link href="../static/images/favicon.ico" type="image" rel="icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon.png" rel="apple-touch-icon" />
 		<link href="https://s3.us-east-2.amazonaws.com/recab/favicons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
@@ -29,79 +29,109 @@
 
 	<body>
 
-<!--HEADER-->
+		<!--HEADER-->
 		<div class = "header">
-<!--BACK-->
-			<button type = "button" class = "button" onclick = "window.history.back()">
-				<h2>BACK</h2>
-			</button>
-<!--BACK-->
-<!--TITLE-->
-			<h1 id = "title">RECAB</h1>
-<!--TITLE-->
-<!--HOME-->
-			<form action = "{{ url_for('homepage') }}">
-				<button type = "submit" class = "button">
-					<h2>HOME</h2>
+			<!--LEFT-->
+			<div class = "left">
+				<!--BACK-->
+				<button type = "button" class = "button" id = "back" onclick = "window.history.back()">
+					<h2>BACK</h2>
 				</button>
-			</form>
-<!--HOME-->
+				<!--BACK-->
+			</div>
+			<!--LEFT-->
+			<!--TITLE-->
+			<h1 id = "title">RECAB</h1>
+			<!--TITLE-->
+			<!--RIGHT-->
+			<div class = "right">
+				<!--HOME-->
+				<form action = "{{ url_for('homepage') }}">
+					<button type = "submit" class = "button" id = "home">
+						<h2>HOME</h2>
+					</button>
+				</form>
+				<!--HOME-->
+			</div>
+			<!--RIGHT-->
 		</div>
-<!--HEADER-->
+		<!--HEADER-->
 
-<!--CABINET-->
+		<!--CABINET-->
 		<div class = "card" id = "namecard">
-			<h2 id = "name">{{ cabinet }}</h2>
-			<img src="{{ image }}" class = "img">
+			<!--LEFT-->
+			<div class = "left">
+			</div>
+			<!--LEFT-->
+			<!--NAME & IMAGE-->
+			<div class = "name-image">
+				<h2 id = "name">{{ cabinet }}</h2>
+				<img src="{{ image }}" class = "img">
+			</div>
+			<!--NAME & IMAGE-->
+			<!--RIGHT-->
+			<div class = "right">
+			</div>
+			<!--RIGHT-->
 		</div>
-<!--CABINET-->
+		<!--CABINET-->
 
-<!--ITEMS-->
+		<!--ITEMS-->
 		<div class = "card">
 			{% for item in items %}
 				<p>{{ item }}</p>
 			{% endfor %}
-
-<!--ADD ITEM-->
+			<!--ADD ITEM-->
 			<div id="newDiv">
-				<form method=POST>
-					NEW ITEM:<br>
-					<input type="text" placeholder = "Enter New Item" class = "input" id = "new" name = "item"><br>
-<!--DONE-->
+				<form method = POST>
+						NEW ITEM:<br>
+						<input type="text" placeholder = "Enter New Item" class = "input" id = "new" name = "item"><br>
+					<!--DONE-->
 					<button type = "submit" class = "button" id = "done">
 						<h2>DONE</h2>
 					</button>
-<!--DONE-->
+					<!--DONE-->
 				</form>
 			</div>
-<!--ADD ITEM-->
+			<!--ADD ITEM-->
 
-<!--PLUS-->
-			<button type = "button" class = "button" id = "plus" onclick="showNew_hidePlus()">
+			<!--PLUS-->
+			<button type = "button" class = "button" id = "plus" onclick = "showNew_hidePlus()">
 				<h1>+</h1>
 			</button>
-<!--PLUS-->
+			<!--PLUS-->
 		</div>
-<!--ITEMS-->
+		<!--ITEMS-->
 
-<!--FOOTER-->
+		<!--FOOTER-->
 		<div class = "footer">
-<!--LOGOUT-->
-			<form action="{{ url_for('logout') }}">
-				<button type = "submit" class = "button">
-					<h2>LOG OUT</h2>
-				</button>
-			</form>
-<!--LOGOUT-->
-<!--EDIT-->
-		<form action="{{ url_for('cabineteditpage') }}">
-				<button type = "submit" class = "button">
-					<h2>EDIT</h2>
-				</button>
-		</form>
-<!--EDIT-->
+			<!--LEFT-->
+			<div class = "left">
+				<!--LOGOUT-->
+				<form action = "{{ url_for('logout') }}">
+					<button type = "submit" class = "button">
+						<h2>LOG OUT</h2>
+					</button>
+				</form>
+				<!--LOGOUT-->
+				<!--LOGGED IN AS-->
+				<a href = "{{ url_for('accountpage') }}" id = "loggedin">logged in as {{ user }}</a>
+				<!--LOGGED IN AS-->
+			</div>
+			<!--LEFT-->
+			<!--RIGHT-->
+			<div class = "right">
+				<!--EDIT-->
+				<form action="{{ url_for('cabineteditpage') }}" id = "edit">
+					<button type = "submit" class = "button">
+						<h2>EDIT</h2>
+					</button>
+				</form>
+				<!--EDIT-->
+			</div>
+			<!--RIGHT-->
 		</div>
-<!--FOOTER-->
+		<!--FOOTER-->
 
 	</body>
 

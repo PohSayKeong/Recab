@@ -12,6 +12,15 @@
 		<link href="../static/images/favicon.ico" type="image" rel="icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
+		<script>
+			function confirm() {
+ 				document.getElementById("confirm").style.display = "flex";
+				document.getElementById("confirm").style.alignContent = "";
+				document.getElementById("delete").style.display = "none";
+			}
+
+		</script>
+
 	</head>
 
 	<body>
@@ -46,30 +55,43 @@
 
 		<!--CABINETS-->
 		{% for cabinet in cabinets%}
-			<form method=POST>
+			<form method = POST>
 				<input type="hidden" name="{{ cabinet }}" value="{{ cabinet }}">
 				<div class = "card">
-					<!--LEFT-->
-					<div class = "left">
-					</div>
-					<!--LEFT-->
-					<h2 class = "card-text">{{ cabinet }}</h2>
-					<!--RIGHT-->
-					<div class = "right">
-						<!--DELETE-->
-						<button type = "submit" class = "button" id = "delete">
-							<h2>&#9587;</h2>
+				<!--LEFT-->
+				<div class = "left">
+				</div>
+				<!--LEFT-->
+				<h2 class = "card-text">{{ cabinet }}</h2>
+				<!--RIGHT-->
+				<div class = "right">
+					<!--DELETE-->
+					<button type = "button" class = "button" id = "delete" onclick = "confirm()">
+						<h2>&#9587;</h2>
+					</button>
+					<!--DELETE-->
+					<!--CONFIRM-->
+					<div id = "confirm">
+						<h2 id = "sure">ARE YOU SURE?</h2>
+						<button type = "submit" class = "button" id = "yes">
+							<h1>&#10004;</h1>
 						</button>
-						<!--DELETE-->
+						<form action="{{ url_for('homeeditpage') }}">
+							<button type = "button" class = "button" id = "no">
+								<h2>&#9587;</h2>
+							</button>
+						</form>
 					</div>
-					<!--RIGHT-->
+					<!--CONFIRM-->
+				</div>
+				<!--RIGHT-->
 				</div>
 			</form>
 		{% endfor %}
 		<!--CABINETS-->
 
 		<!--PLUS-->
-		<form action = "{{ url_for('cabinetpage') }}" >
+		<form action = "{{ url_for('homepage') }}" >
 			<button type = "submit" class = "button" id = "plus">
 				<h2>DONE</h2>
 			</button>

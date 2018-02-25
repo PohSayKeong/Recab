@@ -162,7 +162,7 @@ def homepage():
                         if val == session['cabinet']:
                             session['cabinet_image'] = dic["image"]
         return flask.redirect(url_for('cabinetpage'))
-    return render_template("home.html", cabinets=to_display, images=images)
+    return render_template("home.html", cabinets=to_display, images=images, user=flask_login.current_user.id)
 
 @app.route('/cabinet', methods=["GET","POST"])
 @flask_login.login_required
@@ -190,7 +190,7 @@ def cabinetpage():
             print(e)
             sys.stdout.flush()
         return flask.redirect(url_for('cabinetpage'))
-    return render_template("cabinet.html", items = to_display, cabinet = session['cabinet'], image=image)
+    return render_template("cabinet.html", items = to_display, cabinet = session['cabinet'], image=image, user=flask_login.current_user.id)
 
 @app.route('/newcabinet', methods=["GET","POST"])
 @flask_login.login_required
@@ -200,7 +200,7 @@ def newcabinetpage():
         photo.filename = secure_filename(photo.filename)
         output = upload_file_to_s3(photo, S3_BUCKET)
         session['image_link'] = str(output)
-        return render_template("newcabinet.html", image_link=str(output), display="", method = 'GET')
+        return render_template("newcabinet.html", image_link=str(output), display="", method = 'GET', user=flask_login.current_user.id)
     if request.method == 'POST' and 'description' in request.form:
         indata = Cabinet(request.form['name'], flask_login.current_user.id, request.form['description'], session['image_link'])
         data = indata.__dict__.copy()
@@ -213,7 +213,7 @@ def newcabinetpage():
             print(e)
             sys.stdout.flush()
         return flask.redirect(url_for('homepage'))
-    return render_template("newcabinet.html", display="display:none;")
+    return render_template("newcabinet.html", display="display:none;", user=flask_login.current_user.id)
 
 @app.route('/cabinet-edit', methods=["GET","POST"])
 @flask_login.login_required

@@ -45,8 +45,8 @@
 		<!--HEADER-->
 
 	<!--ITEMS-->
-		{% for i in range(items|length) %}
-			<form method=POST>
+	{% for i in range(items|length) %}
+		<form method=POST>
 				<input type="hidden" name="{{ items[i] }}" value="{{ items[i] }}">
 				<div class = "card">
 					<!--LEFT-->
@@ -64,8 +64,8 @@
 					</div>
 					<!--RIGHT-->
 				</div>
-			</form>
-		{% endfor %}
+		</form>
+	{% endfor %}
 	<!--ITEMS-->
 
 	<!--PLUS-->
