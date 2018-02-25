@@ -105,10 +105,6 @@ body {
 	color: red;
 }
 
-#confirm {
-	display: none;
-}
-
 #sure {
 	display: inline-block;
 	align-self: center;

@@ -12,14 +12,6 @@
 		<link href="../static/images/favicon.ico" type="image" rel="icon">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker|Shrikhand" rel="stylesheet">
 
-		<script>
-			function confirm() {
- 				document.getElementById("confirm").style.display = "flex";
-				document.getElementById("confirm").style.alignContent = "";
-				document.getElementById("delete").style.display = "none";
-			}
-
-		</script>
 
 	</head>
 
@@ -66,23 +58,10 @@
 				<!--RIGHT-->
 				<div class = "right">
 					<!--DELETE-->
-					<button type = "button" class = "button" id = "delete" onclick = "confirm()">
+					<button type = "submit" class = "button" id = "delete">
 						<h2>&#9587;</h2>
 					</button>
 					<!--DELETE-->
-					<!--CONFIRM-->
-					<div id = "confirm">
-						<h2 id = "sure">ARE YOU SURE?</h2>
-						<button type = "submit" class = "button" id = "yes">
-							<h1>&#10004;</h1>
-						</button>
-						<form action="{{ url_for('homeeditpage') }}">
-							<button type = "button" class = "button" id = "no">
-								<h2>&#9587;</h2>
-							</button>
-						</form>
-					</div>
-					<!--CONFIRM-->
 				</div>
 				<!--RIGHT-->
 				</div>

@@ -154,6 +154,9 @@ def homepage():
                 to_display.append(dic["name"])
                 images.append(dic["image"])
     if request.method == 'POST':
+        if 'search' in request.form:
+            session['search'] = request.form['search']
+            return flask.redirect(url_for('search'))
         for i in to_display:
             if i in request.form:
                 session['cabinet'] = i
@@ -251,6 +254,7 @@ def homeeditpage():
                 to_display.append(dic["name"])
     if request.method == 'POST':
         for i in to_display:
+            print(i)
             if i in request.form:
                 db.session.query(Cabinet).filter_by(name=i, user=flask_login.current_user.id).delete()
                 db.session.query(Item).filter_by(user=flask_login.current_user.id, cabinet=i).delete()
@@ -268,6 +272,20 @@ def accountpage():
         db.session.commit()
         return flask.redirect(url_for('login'))
     return render_template("account.html", user=flask_login.current_user.id)
+
+@app.route('/search', methods=["GET","POST"])
+@flask_login.login_required
+def search():
+    items = []
+    for u in db.session.query(Item).all():
+        data = u.__dict__.copy()
+        del data["_sa_instance_state"]
+        items.append(data)
+    for dic in items:
+        for val in dic.values():
+            if val == session['search'] and dic["user"] == flask_login.current_user.id:
+                session['cabinet'] = dic['cabinet']
+    return flask.redirect(url_for('cabinetpage'))
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
