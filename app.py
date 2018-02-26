@@ -10,6 +10,8 @@ import flask_login
 import flask
 from flask_session import Session
 from config import SECRET_KEY, SESSION_TYPE
+import random
+import string
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -200,7 +202,8 @@ def cabinetpage():
 def newcabinetpage():
     if request.method == 'POST' and 'photo' in request.files:
         photo = request.files['photo']
-        photo.filename = secure_filename(photo.filename)
+        unique = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+        photo.filename = secure_filename(photo.filename + unique)
         output = upload_file_to_s3(photo, S3_BUCKET)
         session['image_link'] = str(output)
         return render_template("newcabinet.html", image_link=str(output), display="", method = 'GET', user=flask_login.current_user.id)
